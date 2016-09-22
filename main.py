@@ -25,12 +25,26 @@ for f in files:
         title = r.json().get('Title')
         rating = r.json().get('imdbRating')
         runtime = r.json().get('Runtime')
-        movies.append({'title': title, 'rating': rating, 'runtime': runtime})
+        movies.append({'title': title, 'rating': rating, 'runtime': runtime.split(' ')[0]})
 
-movies.sort(key=operator.itemgetter('rating'), reverse=True)
+if '--sort' in sys.argv:
+    sort_index = sys.argv.index('--sort')
+    sort_preference = sys.argv[sort_index+1]
+
+    sort_preference = sort_preference.lower()
+
+    if sort_preference == 'rating':
+        movies.sort(key=operator.itemgetter('rating'), reverse=True)
+    elif sort_preference == 'runtime':
+        print('this will work soon')
+        # movies.sort(key=operator.itemgetter('runtime'), reverse=True)
+    else:
+        print('huh that makes no sense')
+else:
+    movies.sort(key=operator.itemgetter('rating'), reverse=True)
 
 for movie in movies:
-    print('* {title} ({runtime}): {rating}/10'.format(**movie))
+    print('* {title} ({runtime} mins): {rating}/10'.format(**movie))
 
 for error in errors:
     print('* {}'.format(error))
