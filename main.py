@@ -24,12 +24,13 @@ for f in files:
     else:
         title = r.json().get('Title')
         rating = r.json().get('imdbRating')
-        movies.append({'title': title, 'rating': rating})
+        runtime = r.json().get('Runtime')
+        movies.append({'title': title, 'rating': rating, 'runtime': runtime})
 
 movies.sort(key=operator.itemgetter('rating'), reverse=True)
 
 for movie in movies:
-    print('* {}: {}'.format(movie['title'], movie['rating']))
+    print('* {title} ({runtime}): {rating}/10'.format(**movie))
 
 for error in errors:
     print('* {}'.format(error))
