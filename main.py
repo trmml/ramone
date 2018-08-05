@@ -1,8 +1,4 @@
-import os
-import sys
-import operator
-import requests
-import re
+import os, sys, operator, requests, re
 
 video_extensions = ['webm', 'mpg', 'mp2', 'mpeg', 'mpe', 'mpv', 'ogg', 'mp4', 'm4p', 'm4v', 'mkv', 'mov', 'flv', 'avi']
 regular_exp = re.compile(r", | \. | - | ")
