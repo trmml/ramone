@@ -2,7 +2,10 @@ import os
 import sys
 import operator
 import requests
+import re
 
+video_extensions = ['webm', 'mpg', 'mp2', 'mpeg', 'mpe', 'mpv', 'ogg', 'mp4', 'm4p', 'm4v', 'mkv', 'mov', 'flv', 'avi']
+regular_exp = re.compile(r", | \. | - | ")
 base = 'http://www.omdbapi.com/?t={}'
 movies, errors, files = [], [], []
 
@@ -17,9 +20,11 @@ if not files:
     exit('* Error: Empty directory.')
 
 for f in files:
-    f = f.replace(' ', '+').split('.', 1)[0]
-    url = base.format(f)
+    movie = re.split(regular_exp,f)
+    if movie[-1].lower() not in video_extensions:
+        continue
 
+    url = base.format('+'.join(f[:-1]))
     r = requests.get(url)
 
     if r.json().get('Response') == 'False':
