@@ -10,7 +10,8 @@ if len(sys.argv) < 1:
     exit('* Error: No path to movies provided.')
 
 dir = sys.argv[1]
-files = os.listdir(dir)
+# skips dotfiles
+files = [file for file in os.listdir(dir) if not file.startswith('.')]
 
 if not files:
     exit('* Error: Empty directory.')
