@@ -36,11 +36,10 @@ for f in files:
         rating = r.json().get('imdbRating')
         movies.append({'title': title, 'rating': rating})
 
-# sorts movies by rating
-movies.sort(key=operator.itemgetter('rating'), reverse=True)
-
-for movie in movies:
+# iterates through rating-sorted movies
+for movie in sorted(movies, key=operator.itemgetter('rating'), reverse=True):
     print('* {}: {}'.format(movie['title'], movie['rating']))
 
+# iterates through errors
 for error in errors:
     print('* Failed attempt with "{}"'.format(error))
