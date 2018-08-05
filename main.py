@@ -7,10 +7,13 @@ base = 'http://www.omdbapi.com/?t={}'
 movies, errors, files = [], [], []
 
 if len(sys.argv) < 1: 
-    exit('* Error: No path to movies provided')
+    exit('* Error: No path to movies provided.')
 
 dir = sys.argv[1]
 files = os.listdir(dir)
+
+if not files:
+    exit('* Error: Empty directory.')
 
 for f in files:
     f = f.replace(' ', '+').split('.', 1)[0]
