@@ -37,13 +37,17 @@ features or fix any issues, etc, feel free to submit a PR and I'll check it out.
 Usage
 -----
 
-Clone, install dependencies, run.
+Clone, install dependencies, add API key, run.
 
 ```bash
 git clone https://github.com/trmml/ramone
 
 cd ramone && pip install -r requirements.txt
-python main.py "/Users/josh/Movies" # argument is the path to your movies
+```
+Obtain API key from [OMDb API](https://www.omdbapi.com/apikey.aspx) and add it ramone.py.
+
+```
+python ramone.py "/Users/josh/Movies" # argument is the path to your movies
 ```
 
 LICENSE
