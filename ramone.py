@@ -40,8 +40,8 @@ for f in files:
 
 # iterates through rating-sorted movies
 for movie in sorted(movies, key=operator.itemgetter('rating'), reverse=True):
-    print('* {}: {}'.format(movie['title'], movie['rating']))
+    print('\033[31m*\033[0m {}: {}'.format(movie['title'], movie['rating']))
 
 # iterates through errors
 for error in errors:
-    print('* Failed attempt with "{}"'.format(error))
+    print('\033[31m*\033[0m Failed attempt with "{}"'.format(error))
